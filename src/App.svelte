@@ -1,5 +1,10 @@
 <script>
-	export let name;
+	export let name = 'test';
+	export let counter = 0;
+
+	function increment() {
+		counter += 1;
+	} 
 </script>
 
 <style>
@@ -8,4 +13,5 @@
 	}
 </style>
 
-<h1>Hello {name}!</h1>
+<h1>{name}, {counter} </h1>
+<button on:click="{ increment }"> Increment </button>

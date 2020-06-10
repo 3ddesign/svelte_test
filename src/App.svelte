@@ -14,4 +14,4 @@
 </style>
 
 <h1>{name}, {counter} </h1>
-<button on:click="{ increment }"> Increment </button>
+<button on:click="{ increment.toSting() }"> Increment </button>

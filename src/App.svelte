@@ -1,4 +1,6 @@
 <script>
+	import ContactCard from './ContactCard.svelte';
+
 	export let name = 'test';
 	export let counter = 0;
 
@@ -33,4 +35,7 @@
 <h1>{uppercaseName}, {counter} </h1>
 <button on:click="{ increment.toSting() }"> Increment </button>
 <!-- <button on:click={increment.changeName()}> Change name </button> -->
-<input type="text" value="{name}" on:input="{nameInput}">
+<!-- <input type="text" value="{name}" on:input="{nameInput}"> -->
+<input type="text" bind:value="{name}">
+
+<ContactCard />

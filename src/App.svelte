@@ -2,6 +2,9 @@
 	import ContactCard from './ContactCard.svelte';
 
 	export let name = 'test';
+	let title = '';
+	let image = '';
+	let description = '';
 	export let counter = 0;
 
 	$: uppercaseName = name.toUpperCase();
@@ -33,9 +36,12 @@
 </style>
 
 <h1>{uppercaseName}, {counter} </h1>
-<button on:click="{ increment.toSting() }"> Increment </button>
+<!-- <button on:click="{ increment.toSting() }"> Increment </button> -->
 <!-- <button on:click={increment.changeName()}> Change name </button> -->
 <!-- <input type="text" value="{name}" on:input="{nameInput}"> -->
 <input type="text" bind:value="{name}">
+<input type="text" bind:value="{title}">
+<input type="text" bind:value="{image}">
+<textarea rows="3" bind:value="{description}"></textarea>
 
-<ContactCard userName="{name}" />
+<ContactCard userName="{name}" jobTitle={title} description="{description}" userImage="{image}" />

@@ -365,7 +365,6 @@ var app = (function () {
     	let t4;
     	let div2;
     	let p;
-    	let t5;
 
     	const block = {
     		c: function create() {
@@ -383,7 +382,6 @@ var app = (function () {
     			t4 = space();
     			div2 = element("div");
     			p = element("p");
-    			t5 = text(/*description*/ ctx[2]);
     			if (img.src !== (img_src_value = /*userImage*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", /*userName*/ ctx[0]);
     			attr_dev(img, "class", "svelte-fxhwaq");
@@ -422,7 +420,7 @@ var app = (function () {
     			append_dev(div3, t4);
     			append_dev(div3, div2);
     			append_dev(div2, p);
-    			append_dev(p, t5);
+    			p.innerHTML = /*description*/ ctx[2];
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*userImage*/ 8 && img.src !== (img_src_value = /*userImage*/ ctx[3])) {
@@ -435,8 +433,7 @@ var app = (function () {
 
     			if (dirty & /*userName*/ 1) set_data_dev(t1, /*userName*/ ctx[0]);
     			if (dirty & /*jobTitle*/ 2) set_data_dev(t3, /*jobTitle*/ ctx[1]);
-    			if (dirty & /*description*/ 4) set_data_dev(t5, /*description*/ ctx[2]);
-    		},
+    			if (dirty & /*description*/ 4) p.innerHTML = /*description*/ ctx[2];		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {

@@ -44,4 +44,4 @@
 <input type="text" bind:value="{image}">
 <textarea rows="3" bind:value="{description}"></textarea>
 
-<ContactCard userName="{name}" jobTitle={title} description="{description}" userImage="{image}" />
+<ContactCard userName="{name}" jobTitle={title} {description} userImage="{image}" />

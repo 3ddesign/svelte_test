@@ -1,14 +1,22 @@
 <script>
-  import ContactCard from "./ContactCard.svelte";
+  import ContactCard from './ContactCard.svelte';
 
-  let name = "Dmitry";
-  let title = "";
-  let image = "";
-  let description = "";
+  let name = 'Dmitry';
+  let title = '';
+  let image = '';
+  let description = '';
+  let formState = '';
   let done = false;
 
   function addContact() {
-	   done = true;
+    if (name.trim().length === 0 
+    || title.trim().length === 0 
+    || image.trim().length === 0 
+    || description.trim().length === 0) {
+      formState = 'invalid';
+      return;
+    }
+	   formState = 'done';
   }
 </script>
 
@@ -40,6 +48,10 @@
 
 <button on:click={addContact}>Add contact Card</button>
 
-{#if done}
+{#if formState === 'done'}
 <ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{:else if formState === 'invalid'}
+<p>Invalid Input</p>
+{:else}
+<p>Plese enter some data</p>
 {/if}

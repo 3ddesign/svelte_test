@@ -10,7 +10,8 @@
 
   let createdContacts = [];
 
-  function addContact() {
+  function addContact(event) {
+    // event.preventDefault;
     if (name.trim().length === 0 
     || title.trim().length === 0 
     || image.trim().length === 0 
@@ -26,19 +27,17 @@
     createdContacts = createdContacts.slice(0, - 1);
   }
 
-  function deleteFirst() {
-    createdContacts = createdContacts.slice(1);
-  }
 </script>
 
 <style>
   #form {
     width: 30rem;
     max-width: 100%;
+    margin: 1rem 0;
   }
 </style>
 
-<div id="form">
+<form id="form">
   <div class="form-control">
     <label for="userName">User Name</label>
     <input type="text" bind:value={name} id="userName" />
@@ -55,11 +54,11 @@
     <label for="desc">Description</label>
     <textarea rows="3" bind:value={description} id="desc" />
   </div>
-</div>
+<button on:click|preventDefault={addContact} type="submit">Add contact Card</button>
+</form>
 
-<button on:click={addContact}>Add contact Card</button>
-<button on:click={deleteFirst}>Delete First</button>
-<button on:click={deleteLast}>Delete Last</button>
+<button on:click="{event => createdContacts = createdContacts.slice(0, - 1)}">Delete First</button>
+<button on:click|once={deleteLast}>Delete Last</button>
 
 {#if formState === 'invalid'}
 <p>Invalid Input</p>

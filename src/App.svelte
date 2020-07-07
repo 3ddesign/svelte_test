@@ -19,7 +19,8 @@
             description: 'test description',
             imageUrl: 'http://www.underconsideration.com/brandnew/archives/meetup_logo.png',
             address: '27th Nerd Road, 43243 New York',
-            contactEmail: 'code@test.com'
+            contactEmail: 'code@test.com',
+            isFavorite: false
         },
                 {
             id: 'm2',
@@ -28,7 +29,8 @@
             description: 'test description 2',
             imageUrl: 'http://www.underconsideration.com/brandnew/archives/meetup_logo.png',
             address: '27th Nerd Road, 43243 New York',
-            contactEmail: 'code2@test.com'
+            contactEmail: 'code2@test.com',
+            isFavorite: false
         }
     ];
 
@@ -45,6 +47,16 @@
 
         // meetups.push(newMeetup); // Does not work
         meetups = [newMeetup, ...meetups];
+    }
+
+    function toggleFavorite(event) {
+        const id = event.detail;
+        const updatedMeetup = { ...meetups.find(m => m.id === id) };
+        updatedMeetup.isFavorite = !updatedMeetup.isFavorite;
+        const meetupIndex = meetups.findIndex(m => m.id === id);
+        const updatedMeetups = [...meetups];
+        updatedMeetups[meetupIndex] = updatedMeetup;
+        meetups = updatedMeetups;
     }
 </script>
 
@@ -99,6 +111,6 @@
 
          <Button type="submit" caption="Save" />
     </form>
-    <MeetupGrid {meetups} />
+    <MeetupGrid {meetups} on:togglefavorite="{toggleFavorite}" />
 </main>
 

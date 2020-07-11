@@ -91,12 +91,13 @@
     <p>{ description }</p>
   </div>
   <footer>
-    <Button href="mailto:{email}" type="button" caption="Contact" />
+    <Button href="mailto:{email}" type="button">Contact</Button>
     <Button 
       type="button"
       color={isFav ? null : 'success'}
-      mode="outline" 
-      caption="{isFav ? 'Unfavorite ' : 'Favorite'}" on:click="{() => dispatch('togglefavorite', id)}" />
-    <Button type="button" caption="Show Details" />
+      mode="outline"
+      on:click="{() => dispatch('togglefavorite', id)}">
+      {isFav ? 'Unfavorite ' : 'Favorite'}</Button>
+    <Button type="button">Show Details</Button>
    </footer>
 </article>

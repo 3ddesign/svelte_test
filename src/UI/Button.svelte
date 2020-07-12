@@ -1,9 +1,8 @@
 <script>
-    export let type = 'button';
-    export let caption;
-    export let href = null;
-    export let mode = null;
-    export let color = null;
+  export let type = "button";
+  export let href = null;
+  export let mode = null;
+  export let color = null;
 </script>
 
 <style>

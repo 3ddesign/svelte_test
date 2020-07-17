@@ -7,6 +7,8 @@
   export let type = 'text';
   export let valid = true;
   export let validityMessage = '';
+
+  let touched = false;
 </script>
 
 <style>
@@ -55,11 +57,11 @@ label {
 <div class="form-control">
   <label for="{id}}">{label}</label>
   {#if controlType === 'textarea'}
-    <textarea class:invalid="{!valid}" rows="{rows}" id="{id}" value={value} on:input />
+    <textarea class:invalid="{!valid && touched}" rows="{rows}" id="{id}" value={value} on:input on:blur={() => touched = true} />
   {:else}
-    <input class:invalid="{!valid}" type="{type}" id="{id}" value={value} on:input />
+    <input class:invalid="{!valid && touched}" type="{type}" id="{id}" value={value} on:input on:blur={() => touched = true} />
   {/if}
-  {#if validityMessage && !valid}
+  {#if validityMessage && !valid && touched}
     <p class="error-message">{validityMessage}</p>
   {/if}
 </div>

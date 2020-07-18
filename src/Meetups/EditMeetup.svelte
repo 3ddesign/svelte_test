@@ -104,6 +104,6 @@ $: titleValid = !isEmpty(title);
       </form>
       <div>
           <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>
-          <Button type="button" on:click={submitForm}>Save</Button>
+          <Button type="button" on:click={submitForm} disabled={!formIsValid}>Save</Button>
       </div>
 </Modal>

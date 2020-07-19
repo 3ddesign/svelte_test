@@ -86,15 +86,13 @@ $: titleValid = !isEmpty(title);
           valid={emailValid}
           validityMessage="Please enter valid email."
           on:input="{(event) => email = event.target.value}" /> 
-          <TextInput 
+          <TextInput
           id="description"
-          label="Description" 
-          value="{description}"
+          label="Description"
           controlType="textarea"
-          rows="3" 
           valid={descriptionValid}
-          validityMessage="Please enter valid description."
-          on:input="{(event) => description = event.target.value}" /> 
+          validityMessage="Please enter a valid description."
+          bind:value={description} />
       </form>
       <div>
           <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>

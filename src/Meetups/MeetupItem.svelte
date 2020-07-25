@@ -97,7 +97,7 @@
     <p>{ description }</p>
   </div>
   <footer>
-    <Button href="mailto:{email}" type="button">Contact</Button>
+    <Button mode="outline" type="button" on:click={() => dispatch('edit', id) }>Edit</Button>
     <Button 
       type="button"
       color={isFav ? null : 'success'}

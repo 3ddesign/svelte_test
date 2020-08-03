@@ -57,6 +57,11 @@ $: titleValid = !isEmpty(title);
       if (id) {
         meetups.updateMeetup(id, meetupData);
       } else {
+        fetch('https://sv-test213.firebaseio.com/meetups.json', {
+          method: 'POST',
+          body: JSON.stringify(meetupData),
+          headers: { 'Content-Type': 'application/json'} 
+        });
         meetups.addMeetup(meetupData);
       }
       dispatch('save');

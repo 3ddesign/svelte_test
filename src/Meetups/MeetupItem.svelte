@@ -10,7 +10,6 @@
   export let imageUrl;
   export let description;
   export let address;
-  export let email;
   export let isFav;
 
   function toggleFavorite() {

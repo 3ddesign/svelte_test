@@ -59,10 +59,19 @@ $: titleValid = !isEmpty(title);
       } else {
         fetch('https://sv-test213.firebaseio.com/meetups.json', {
           method: 'POST',
-          body: JSON.stringify(meetupData),
+          body: JSON.stringify({ ...meetupData, isFavorite: false }),
           headers: { 'Content-Type': 'application/json'} 
-        });
-        meetups.addMeetup(meetupData);
+        })
+        .then(response => {
+          if (!res.ok) {
+            throw new Error('Request is failed');
+          }
+          res.json();
+        })
+         .then(data => {
+           meetups.addMeetup({ ...meetupData, isFavorite: false, id: data.name });
+         })
+        .catch(error => console.error(console.error()));
       }
       dispatch('save');
     }

@@ -11,6 +11,23 @@
     let page = 'overview';
     let pageData = {}; 
 
+    fetch('https://sv-test213.firebaseio.com/meetups.json' )
+    .then(res => {
+          if (!res.ok) {
+            throw new Error('Fetch is failed')
+          } 
+          return res.json();
+    })
+    .then(data => {
+          const loadedMeetups = [];
+          for (const key in data) {
+              loadedMeetups.push({
+                  ...data[key],
+                   id: key
+              });
+          } 
+    })
+    .catch(error => console.error(console.error()));
     
     let loadedMeetups = meetups;
 

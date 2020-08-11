@@ -10,7 +10,6 @@
 
     const dispatch = createEventDispatcher();
 
-
     let favsOnly = false;
 
     $: filteredMeetups = favsOnly ? meetups.filter(meetup => meetup.isFavorite) : meetups;
@@ -33,6 +32,9 @@
         display: flex;
         justify-content: space-between;
     }
+    #no-meetups {
+         margin: 1rem;
+    }
 
     @media (min-width: 768px) {
         #meetups {
@@ -43,10 +45,11 @@
 
 <section id="meetup-contorls">
     <MeetupFilter on:select={setFilter} />
-
     <Button on:click="{() => dispatch('add')}">New Meetup</Button>
 </section>
-
+{#if filteredMeetups.length === 0}
+    <p id="no-meetups">No meetups added yet.</p>
+{/if}
 <section id="meetups">
     {#each filteredMeetups as meetup (meetup.id)}
         <div transition:scale animate:flip={{duration: 300 }}>

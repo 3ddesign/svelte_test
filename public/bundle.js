@@ -3470,7 +3470,7 @@ var app = (function () {
     const { Error: Error_1, console: console_1 } = globals;
     const file$8 = "src/Meetups/EditMeetup.svelte";
 
-    // (140:10) <Button type="button" mode="outline" on:click={cancel}>
+    // (152:10) <Button type="button" mode="outline" on:click={cancel}>
     function create_default_slot_3$1(ctx) {
     	let t;
 
@@ -3490,14 +3490,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(140:10) <Button type=\\\"button\\\" mode=\\\"outline\\\" on:click={cancel}>",
+    		source: "(152:10) <Button type=\\\"button\\\" mode=\\\"outline\\\" on:click={cancel}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (141:10) <Button type="button" on:click={submitForm} disabled={!formIsValid}>
+    // (153:10) <Button type="button" on:click={submitForm} disabled={!formIsValid}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
@@ -3517,14 +3517,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(141:10) <Button type=\\\"button\\\" on:click={submitForm} disabled={!formIsValid}>",
+    		source: "(153:10) <Button type=\\\"button\\\" on:click={submitForm} disabled={!formIsValid}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:10) {#if id}
+    // (154:10) {#if id}
     function create_if_block$4(ctx) {
     	let button;
     	let current;
@@ -3575,14 +3575,14 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(142:10) {#if id}",
+    		source: "(154:10) {#if id}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (143:10) <Button type="button"  on:click={deleteMeetup}>
+    // (155:10) <Button type="button"  on:click={deleteMeetup}>
     function create_default_slot_1$1(ctx) {
     	let t;
 
@@ -3602,14 +3602,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(143:10) <Button type=\\\"button\\\"  on:click={deleteMeetup}>",
+    		source: "(155:10) <Button type=\\\"button\\\"  on:click={deleteMeetup}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (94:0) <Modal title="Edit Meetup" on:cancel>
+    // (106:0) <Modal title="Edit Meetup" on:cancel>
     function create_default_slot$3(ctx) {
     	let form;
     	let textinput0;
@@ -3766,8 +3766,8 @@ var app = (function () {
     			t7 = space();
     			if (if_block) if_block.c();
     			attr_dev(form, "class", "svelte-xg754s");
-    			add_location(form, file$8, 94, 4, 2546);
-    			add_location(div, file$8, 138, 6, 4124);
+    			add_location(form, file$8, 106, 4, 2970);
+    			add_location(div, file$8, 150, 6, 4548);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, form, anchor);
@@ -3913,7 +3913,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(94:0) <Modal title=\\\"Edit Meetup\\\" on:cancel>",
+    		source: "(106:0) <Modal title=\\\"Edit Meetup\\\" on:cancel>",
     		ctx
     	});
 
@@ -4016,6 +4016,18 @@ var app = (function () {
 
     		if (id) {
     			customMeetupsStore.updateMeetup(id, meetupData);
+
+    			fetch(`https://sv-test213.firebaseio.com/meetups/${id}.json`, {
+    				method: "PATCH",
+    				body: JSON.stringify(meetupData),
+    				headers: { "Content-Type": "application/json" }
+    			}).then(response => {
+    				if (!res.ok) {
+    					throw new Error("Request is failed");
+    				}
+
+    				customMeetupsStore.updateMeetup(id, meetupData);
+    			}).catch(error => console.error(error));
     		} else {
     			fetch("https://sv-test213.firebaseio.com/meetups.json", {
     				method: "POST",
@@ -4033,7 +4045,7 @@ var app = (function () {
     					isFavorite: false,
     					id: data.name
     				});
-    			}).catch(error => console.error(console.error()));
+    			}).catch(error => console.error(error));
     		}
 
     		dispatch("save");

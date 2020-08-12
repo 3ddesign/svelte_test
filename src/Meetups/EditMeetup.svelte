@@ -56,6 +56,18 @@ $: titleValid = !isEmpty(title);
       }
       if (id) {
         meetups.updateMeetup(id, meetupData);
+        fetch(`https://sv-test213.firebaseio.com/meetups/${id}.json`, {
+          method: 'PATCH',
+          body: JSON.stringify(meetupData),
+          headers: { 'Content-Type': 'application/json'} 
+        })
+        .then(response => {
+          if (!res.ok) {
+            throw new Error('Request is failed');
+          }
+          meetups.updateMeetup(id, meetupData);
+        }) 
+        .catch(error => console.error(error));
       } else {
         fetch('https://sv-test213.firebaseio.com/meetups.json', {
           method: 'POST',
@@ -71,7 +83,7 @@ $: titleValid = !isEmpty(title);
          .then(data => {
            meetups.addMeetup({ ...meetupData, isFavorite: false, id: data.name });
          })
-        .catch(error => console.error(console.error()));
+        .catch(error => console.error(error));
       }
       dispatch('save');
     }

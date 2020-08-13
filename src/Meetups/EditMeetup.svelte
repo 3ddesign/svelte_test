@@ -93,7 +93,17 @@ $: titleValid = !isEmpty(title);
     }
 
     function deleteMeetup() {
-      meetups.removeMeetup(id);
+         fetch(`https://sv-test213.firebaseio.com/meetups/${id}.json`, {
+          method: 'DETELE'
+        })
+        .then(response => {
+          if (!res.ok) {
+            throw new Error('Request is failed');
+          }
+           meetups.removeMeetup(id);
+        }) 
+        .catch(error => console.error(error));
+    
       dispatch('save');
      }
  </script>

@@ -13,7 +13,16 @@
   export let isFav;
 
   function toggleFavorite() {
-    meetups.toggleFavorite(id);
+    fetch(`https://sv-test213.firebaseio.com/meetups/${id}.json`, {
+       method: 'PATCH',
+       body: JSON.stringify({ isFavorite: !isFav}),
+       headers: { 'Content-Type': 'application/json'} 
+    }).then(response => {
+       if (!res.ok) {
+         throw new Error('Request is failed');
+       }
+        meetups.toggleFavorite(id);
+    }) .catch(error => console.error(error));
   }
 
   const dispatch = createEventDispatcher();

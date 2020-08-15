@@ -6,12 +6,14 @@
     import MeetupDetail from './Meetups/MeetupDetail.svelte';
     import Button from  './UI/Button.svelte';
     import LoadingSpinner from  './UI/LoadingSpinner.svelte';
+    import Error from './UI/Error.svelte';
 
     let editMode;
     let editedId;
     let page = 'overview';
     let pageData = {}; 
     let isLoading = true;
+    let error;
 
     fetch('https://sv-test213.firebaseio.com/meetups.json' )
     .then(res => {
@@ -33,9 +35,10 @@
             meetups.setMeetups(loadedMeetups.reverse());
         }, 1000)
     })
-    .catch(error => { 
+    .catch(errorResponse => { 
+            error = errorResponse;
             isLoading = false;
-            console.error(console.error())
+            console.error(error);
         });
     
     let loadedMeetups = meetups;
@@ -63,6 +66,10 @@
         editMode = 'edit'; 
         editedId = event.detail;
     }
+
+    function clearError() {
+        error = null; 
+    }
 </script>
 
 <style>
@@ -70,6 +77,10 @@
         margin-top: 5rem;
     }
  </style>
+
+{#if error } 
+    <Error message={error.message} on:cancel={clearError}/>
+{/if}
 
 <Header />
 
